@@ -1,0 +1,58 @@
+from django.shortcuts import render
+from django.shortcuts import get_object_or_404
+from django.contrib.auth.models import User
+from .models import MeterBoard
+from django.http import JsonResponse
+from .user_functions import getUserData,getUserUnpaidBills
+from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated
+# Create your views here.
+
+
+
+class UserDetailView(APIView):
+    permission_classes = (IsAuthenticated,)
+    
+    def post(self,request,user_id):                user = User.objects.get(pk=user_id)
+	print(request.user)
+        if user :
+            user_data = {
+                "message": "user found",
+                "username":user.username,
+                "meterboards":getUserData(user)
+            }
+        else:
+            user_data = {
+                "message": "user not found",
+                "meterboards": []
+            }
+    
+        return JsonResponse(user_data, safe=False)
+
+
+
+
+
+class UserBillDetailView(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def post(request,meterboard_number):
+    
+        meterboard = MeterBoard.objects.get(board_number=meterboard_number)
+
+        if meterboard:
+            bills_data= {
+                "message":"meterboard found",
+                "bills":getUserUnpaidBills(meterboard)
+            }
+    
+        else:
+            bills_data = {
+                "message":"meterboard not found",
+                "bills":[]
+            }
+
+
+        return JsonResponse(bills_data,safe=False)
+    
+
