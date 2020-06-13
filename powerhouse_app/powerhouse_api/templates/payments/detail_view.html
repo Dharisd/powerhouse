@@ -1,0 +1,116 @@
+{% extends "../layouts/base.html" %}
+
+
+{% block content %}
+
+
+<div class="px-4 md:px-10 mx-auto w-full m-64 pt-32">
+
+    <div class="flex flex-wrap mt-12">
+        <div class="container mx-auto px-4">
+            <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
+                <div class="rounded-t mb-0 px-4 py-3 border-0">
+                    <td align="left" class="sm-p-20 sm-dui17-b-t"
+                        style="border-radius: 2px; padding: 40px; position: relative; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, .1), 0 4px 6px -2px rgba(0, 0, 0, .05); vertical-align: top; z-index: 50;"
+                        bgcolor="#ffffff" valign="top">
+                        <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
+                            <tbody>
+                                <tr>
+                                    <td width="80%">
+                                        <h1 class="sm-text-lg all-font-roboto"
+                                            style="font-weight: 700; line-height: 100%; margin: 0; margin-bottom: 4px; font-size: 24px;">
+                                            Payment                                         
+                                        </h1>
+                                        <p class="sm-text-xs" style="margin: 0; color: #a0aec0; font-size: 14px;">
+                                            {{ payment.payment_bill.bill_id }}</p>
+                                    </td>
+                                    <td style="text-align: right;" width="20%" align="right">
+                                        <button
+                                            class="
+                                            {% if  payment.payment_status == 'APPROVED'  %}
+                                            bg-green-600 
+                                            {% elif  payment.payment_status == 'PENDING'  %}
+                                            bg-orange-600 
+                                            {% elif  payment.payment_status == 'REJECTED'  %}
+                                            bg-red-600
+                                            {% endif %} 
+                                            text-white text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1"
+                                            type="button"
+                                            style="transition:all .15s ease"
+                                          >{{ payment.payment_status}}
+                                        </button>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div style="line-height: 32px;">‌</div>
+                        <table class="sm-leading-32" style="line-height: 28px; font-size: 14px;" width="100%"
+                            cellpadding="0" cellspacing="0" role="presentation">
+                            <tbody>
+
+                                <tr>
+                                    <td class="sm-inline-block" style="color: #718096;" width="50%">Payment Amount</td>
+                                    <td class="sm-inline-block" style="font-weight: 600; text-align: right;" width="50%"
+                                        align="right">{{ payment.payment_amount }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="sm-inline-block" style="color: #718096;" width="50%">Meterboard Name</td>
+                                    <td class="sm-inline-block" style="font-weight: 600; text-align: right;" width="50%"
+                                        align="right">{{ payment.payment_bill.billing_meterboard.board_name }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="sm-w-1-4 sm-inline-block" style="color: #718096;" width="50%">Meterboard
+                                        Number</td>
+                                    <td class="sm-w-3-4 sm-inline-block" style="font-weight: 600; text-align: right;"
+                                        width="50%" align="right">
+                                        {{ payment.payment_bill.billing_meterboard.board_number }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="sm-w-1-4 sm-inline-block" style="color: #718096;" width="50%">Payment
+                                        Month</td>
+                                    <td class="sm-w-3-4 sm-inline-block" style="font-weight: 600; text-align: right;"
+                                        width="50%" align="right">{{ payment.payment_bill.billing_month }}</td>
+                                </tr>
+                                <tr>
+
+                                    <td class="" style="font-weight: 600; text-align: right;">
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        <div class="grid grid-rows-3 grid-flow-col gap-4">
+                            <div class="row-span-2">
+                                <form action="{% url 'powerhouse_app:change_status' %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" id="payment_uuid" name="payment_uuid"
+                                        value="{{ payment.payment_identifier}}">
+                                    <input type="hidden" id="action" name="action" value="APPROVED">
+                                    <input value="Approve" type="submit"
+                                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+
+                                </form>
+                            </div>
+                            <div class="row-span-2">
+                                <form action="{% url 'powerhouse_app:change_status' %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" id="payment_uuid" name="payment_uuid"
+                                        value="{{ payment.payment_identifier}}">
+                                    <input type="hidden" id="action" name="action" value="REJECTED">
+                                    <input value="Reject" type="submit"
+                                        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                                </form>
+                            </div>
+                        </div>
+
+
+                        <img src="{{ payment.payment_slip.url }}" class="mb-0 px-4 py-3">
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    {% endblock %}

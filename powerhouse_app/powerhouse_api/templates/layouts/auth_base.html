@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="shortcut icon" href="./assets/img/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="./assets/img/apple-icon.png"
+    />
+    <link
+      rel="stylesheet"
+      href="./assets/vendor/@fortawesome/fontawesome-free/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/creativetimofficial/tailwind-starter-kit/compiled-tailwind.min.css"
+    />
+    <title>Login | CPH Control Panel</title>
+  </head>
+  <body class="text-gray-800 antialiased">
+    
+    <main>
+      <section class="absolute w-full h-full">
+        <div
+          class="absolute top-0 w-full h-full bg-gray-700"
+        ></div>
+          {% block content %}{% endblock %}
+        <footer class="absolute w-full bottom-0 bg-gray-900 pb-6">
+          <div class="container mx-auto px-4">
+            <hr class="mb-6 border-b-1 border-gray-700" />
+            <div
+              class="flex flex-wrap items-center md:justify-between justify-center"
+            >
+              <div class="w-full md:w-4/12 px-4">
+                <div class="text-sm text-white font-semibold py-1">
+                  Copyright © 2020
+                  <a
+                    href=""
+                    class="text-white hover:text-gray-400 text-sm font-semibold py-1"
+                    ></a
+                  >
+                </div>
+              </div>
+              <div class="w-full md:w-8/12 px-4">
+                <ul
+                  class="flex flex-wrap list-none md:justify-end  justify-center"
+                >
+
+                </ul>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </section>
+    </main>
+  </body>
+  <script>
+    function toggleNavbar(collapseID) {
+      document.getElementById(collapseID).classList.toggle("hidden");
+      document.getElementById(collapseID).classList.toggle("block");
+    }
+  </script>
+</html>

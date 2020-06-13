@@ -28,6 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     "192.168.100.112",
+    "127.0.0.1"
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images/upload')

@@ -1,5 +1,6 @@
 from django.db import models
 import uuid
+from django.urls import reverse
 from django.contrib.auth.models import User
 from .db_functions import getBillDetails,getUsage
 
@@ -130,17 +131,19 @@ class Payment(models.Model):
     #statuses the payment can be in
     APPROVED = "APPROVED"
     PENDING = "PENDING"
+    REJECTED = "REJECTED"
 
     PAYMENT_STATUSES = [
         (APPROVED,"APPROVED"),
         (PENDING,"PENDING"),
+        (REJECTED,"REJECTED")
 
     ]
 
     payment_status = models.CharField(
         max_length = 8,
         choices= PAYMENT_STATUSES,
-        default = APPROVED
+        default = PENDING
     )
 
     AUTOGEN = "AUTOGEN"
@@ -165,8 +168,8 @@ class Payment(models.Model):
         return "{} {}".format(payment_bill_id,payment_uuild)
 
     
-        def get_absolute_url(self):
-            return reverse('powerhouse_api:payment', args=[str(self.pk)])
+    def get_absolute_url(self):
+        return reverse('powerhouse_app:payment', args=[str(self.pk)])
 
 
 
