@@ -35,7 +35,7 @@ def getUserData(user):
 
 #returns all the unpaid bills for given metrboard
 def getUserBills(meterboard_number):
-    meterboard = MeterBoard.objects.get(board_name=meterboard_number)
+    meterboard = MeterBoard.objects.get(board_number=meterboard_number)
     bill_data = []
 
     # check for unpaid bills
