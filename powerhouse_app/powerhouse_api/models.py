@@ -50,7 +50,7 @@ class MeterReading(models.Model):
 
     #the meta data about the reading
     reading_datetime = models.DateTimeField()
-    reading_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    reading_user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
     
     def __str__(self):

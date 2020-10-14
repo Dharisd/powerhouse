@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import MeterReading 
+from .models import MeterReading,User 
 
 
 class PaymentStatusChangeForm(forms.Form):
@@ -13,4 +13,5 @@ class PaymentStatusChangeForm(forms.Form):
 class MeterReadingForm(ModelForm):
     class Meta:
         model = MeterReading
-        fields = ["reading_meterboard","reading_month","reading_units","reading_datetime","reading_user"]
+        fields = ["reading_meterboard","reading_month","reading_units","reading_datetime"]
+
