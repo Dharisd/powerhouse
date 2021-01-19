@@ -3,69 +3,105 @@
 
 {% block content %}
 
-<div class="w-full ">
-    <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
-      <div class="rounded-t mb-0 px-4 py-3 border-0">
-        <div class="flex flex-wrap items-center">
-          <div class="relative w-full px-4 max-w-full flex-grow flex-1">
-            <h3 class="font-semibold text-base text-gray-800 capitalize">
-              Readings
-            </h3>
-          </div>
-          <div class="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
-            <button
-              class="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1"
-              type="button"
-              style="transition:all .15s ease"
-              onclick="toggleModal('modal-id')"
-            >
-              Add New
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="block w-full overflow-x-auto">
-        <!-- Projects table -->
-        <table class="items-center w-full bg-transparent border-collapse">
-          <thead>
-            <tr>
-              <th class="px-6 bg-gray-100 text-gray-600 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left">
-                Reading month
-              </th>
-              <th class="px-6 bg-gray-100 text-gray-600 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left">
-               Reading Units
-              </th>
-              <th class="px-6 bg-gray-100 text-gray-600 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left">
-                Reading Time
-              </th>
-              <th class="px-6 bg-gray-100 text-gray-600 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left">
-                Taken By
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-              {% for reading in readings %}
-            <tr>
-              <th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left">
-                {{ reading.reading_month|date:"M Y" }}
-              </th>
-              <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                {{ reading.reading_units }}
-              </td>
-              <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                {{ reading.reading_datetime }}
-              </td>
-              <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                {{ reading.reading_user }}
-              </td>
-            </tr>
-            {% endfor %}
 
-          </tbody>
-        </table>
+
+<div class="w-full ">
+  <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+    <div class="rounded-t mb-0 px-4 py-3 border-0">
+      <div class="flex flex-wrap items-center">
+        <div class="relative w-full px-4 max-w-full flex-grow flex-1">
+          <h3 class="font-semibold text-base text-gray-800 capitalize">
+            {{ board_details.board_name }}
+          </h3>
+        </div>
+        <div class="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
+          <button
+          class="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1"
+          type="button"
+          style="transition:all .15s ease"
+          onclick="toggleModal('modal-id')"
+          >
+          {{ board_details.board_type }}
+        </button>
+          <button
+          class="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1"
+          type="button"
+          style="transition:all .15s ease"
+          onclick="toggleModal('modal-id')"
+          >
+          Board Number:{{ board_details.board_number }}
+        </button>
       </div>
     </div>
   </div>
+  <div class="block w-full overflow-x-auto">
+
+
+    </div>
+  </div>
+  <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+    <div class="rounded-t mb-0 px-4 py-3 border-0">
+      <div class="flex flex-wrap items-center">
+        <div class="relative w-full px-4 max-w-full flex-grow flex-1">
+          <h3 class="font-semibold text-base text-gray-800 capitalize">
+            Readings
+          </h3>
+        </div>
+        <div class="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
+          <button
+          class="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1"
+          type="button"
+          style="transition:all .15s ease"
+          onclick="toggleModal('modal-id')"
+          >
+          Add New
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="block w-full overflow-x-auto">
+    <!-- Projects table -->
+    <table class="items-center w-full bg-transparent border-collapse">
+      <thead>
+        <tr>
+          <th class="px-6 bg-gray-100 text-gray-600 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left">
+            Reading month
+          </th>
+          <th class="px-6 bg-gray-100 text-gray-600 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left">
+           Reading Units
+         </th>
+         <th class="px-6 bg-gray-100 text-gray-600 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left">
+          Reading Time
+        </th>
+        <th class="px-6 bg-gray-100 text-gray-600 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left">
+          Taken By
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for reading in readings %}
+      <tr>
+        <th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left">
+          {{ reading.reading_month|date:"M Y" }}
+        </th>
+        <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
+          {{ reading.reading_units }}
+        </td>
+        <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
+          {{ reading.reading_datetime }}
+        </td>
+        <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
+          {{ reading.reading_user }}
+        </td>
+      </tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+</div>
+</div>
+</div>
+
 </div>
 
 
@@ -130,9 +166,9 @@
             </button>
           </div>
         </form>
+      </div>
     </div>
   </div>
-</div>
 </div>
 <div class="hidden opacity-25 fixed inset-0 z-40 bg-black" id="modal-id-backdrop"></div>
 
@@ -146,4 +182,4 @@
   }
 </script>
 
-  {% endblock %}
+{% endblock %}
