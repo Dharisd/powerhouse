@@ -83,7 +83,7 @@ def getBillDetails(meterbill):
             "300_plus":str(split_hundreds[3]),
             "total_amount":str(billing_units),            
         },
-        "charging amounts":{
+        "charging_amounts":{
             "0_100":first_hundred_amount,
             "101_200":two_hundred_amount,
             "201_300":three_hundred_amount,
