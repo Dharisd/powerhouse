@@ -1,6 +1,6 @@
 from django.views.generic import DetailView,ListView
 from rest_framework.permissions import IsAuthenticated
-from ..models import MeterBoard,MeterReading
+from ..models import MeterBoard,MeterReading,MeterBill
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
@@ -26,7 +26,7 @@ class MeterBoardDashView(ListView):
         context = super().get_context_data(**kwargs)
         # Add in a QuerySet of all the Readings from that board
         reading_board = self.kwargs["board_number"]
-        bills = MeterBill.objects.filter(billing_meterboard=board_number,).order_by('-billing_month')
+        bills = MeterBill.objects.filter(billing_meterboard=reading_board,).order_by('-billing_month')
         context["board_number"] = reading_board
         context["bills"]  = bills
         context["board_details"] = MeterBoard.objects.get(pk=reading_board)
