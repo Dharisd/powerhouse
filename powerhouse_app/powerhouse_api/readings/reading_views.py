@@ -10,6 +10,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 class MeterBoardListView(ListView):
     template_name = "readings/index.html"
     context_object_name = "meterboards"
+    paginate_by = 20
     
     model = MeterBoard
 
