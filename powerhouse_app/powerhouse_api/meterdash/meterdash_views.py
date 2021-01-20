@@ -11,7 +11,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 class MeterBoardDashListView(ListView):
     template_name = "meterdash/index.html"
     context_object_name = "meterboards"
-    paginate_by = 20
+    paginate_by = 10
     
     model = MeterBoard
 
