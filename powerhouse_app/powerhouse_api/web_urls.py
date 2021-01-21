@@ -1,9 +1,9 @@
 from django.urls import path,include
 from .payments.payment_functions import approve_bill
 from .payments.payment_views import PaymentListView,PaymentDetailView
-from .readings.reading_views import MeterBoardListView,MeterReadingDetailView
+from .readings.reading_views import MeterBoardListView,MeterReadingDetailView,MeterBoardReadingSearchView
 from .readings.reading_functions import add_reading
-from .meterdash.meterdash_views import MeterBoardDashListView,MeterBoardDashView
+from .meterdash.meterdash_views import MeterBoardDashListView,MeterBoardDashView,MeterBoardSearchView
 
 
 
@@ -18,10 +18,13 @@ urlpatterns = [
     path('admin/readings/', MeterBoardListView.as_view(),name="list_readings"),
     path('admin/readings/view/<slug:board_number>/', MeterReadingDetailView.as_view(),name="reading"),
     path('admin/readings/add/', add_reading,name="add_reading"),
+    path('admin/readings/search/', MeterBoardReadingSearchView.as_view(),name="meterboardreading_search"),
 
     #meterdash
     path('admin/meters/', MeterBoardDashListView.as_view(),name="list_meters"),
     path('admin/meters/view/<slug:board_number>/', MeterBoardDashView.as_view(),name="meterboards"),
+    path('admin/meters/search/', MeterBoardSearchView.as_view(),name="meterboard_search"),
+
 
 
     #auth

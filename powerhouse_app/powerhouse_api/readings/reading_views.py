@@ -3,6 +3,7 @@ from rest_framework.permissions import IsAuthenticated
 from ..models import MeterBoard,MeterReading
 from django.shortcuts import redirect
 from django.urls import reverse
+from ..forms import BasicSearchForm
 from django.http import HttpResponse, HttpResponseRedirect
 
 
@@ -13,6 +14,32 @@ class MeterBoardListView(ListView):
     paginate_by = 20
     
     model = MeterBoard
+
+
+class MeterBoardReadingSearchView(ListView):
+    template_name = "readings/index.html"
+    context_object_name = "meterboards"
+    form_class = BasicSearchForm
+    paginate_by = 10
+    
+    model = MeterBoard
+    
+    def get_queryset(self):
+        self.form = self.form_class(self.request.GET)
+
+        if self.form.is_valid():
+            search_query = self.form.cleaned_data["search_query"] 
+            board_number_filter = MeterBoard.objects.filter(board_number__icontains=search_query)
+            board_name_filter = MeterBoard.objects.filter(board_name__icontains=search_query)
+            return board_name_filter | board_number_filter
+
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["ex_query"] = self.form.cleaned_data["search_query"]
+        context["current_page"] = "MeterBoard Reading Search results"
+        return context
+
 
 
 class MeterReadingDetailView(ListView):

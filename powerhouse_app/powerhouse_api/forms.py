@@ -9,6 +9,9 @@ class PaymentStatusChangeForm(forms.Form):
     action = forms.CharField(label="action", max_length=10) # maybe should put choices here
 
 
+class BasicSearchForm(forms.Form):
+    search_query = forms.CharField(required=False)
+
 
 class MeterReadingForm(ModelForm):
     class Meta:

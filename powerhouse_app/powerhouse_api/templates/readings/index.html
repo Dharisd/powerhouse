@@ -100,3 +100,35 @@
 </div>
 
   {% endblock %}
+
+
+  {% block large_search_bar %}
+  <form class="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3" action="{% url 'powerhouse_app:meterboardreading_search' %}" method="GET">
+    <div class="relative flex w-full flex-wrap items-stretch">
+        <span
+            class="z-10 h-full leading-snug font-normal absolute text-center text-gray-400 absolute bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3"><i
+                class="fas fa-search"></i></span>
+        <input type="text" {% if ex_query %} value={{ex_query}} {% endif %}placeholder="Board Name or Number" name="search_query"
+            class="px-3 py-3 placeholder-gray-400 text-gray-700 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-full pl-10" />
+            
+    </div>
+    
+</form>
+{% endblock %}
+
+
+
+{% block search_bar %}
+
+<form class="mt-6 mb-4 md:hidden" action="{% url 'powerhouse_app:meterboardreading_search' %}" method="GET">
+    <div class="mb-3 pt-0">
+        <input type="text" {% if ex_query %} value={{ex_query}} {% endif %} placeholder="Board Name or Number" name="search_query"
+            class="px-3 py-2 h-12 border border-solid  border-gray-600 placeholder-gray-400 text-gray-700 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal" />
+    </div>
+</form>
+
+
+{% endblock %}
+
+
+
